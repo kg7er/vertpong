@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqsqkcys4nmkb"]
+
+[ext_resource type="Texture2D" uid="uid://b7pyawd7sb2av" path="res://assets/vertPongField.png" id="1_tvod1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x1l7"]
+size = Vector2(120, 20)
+
+[node name="Main" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_tvod1")
+centered = false
+
+[node name="Player" type="StaticBody2D" parent="."]
+position = Vector2(221, 930)
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_right = 120.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(60, 10)
+shape = SubResource("RectangleShape2D_2x1l7")
+
+[node name="CPU" type="StaticBody2D" parent="."]
+position = Vector2(221, 50)
+
+[node name="ColorRect" type="ColorRect" parent="CPU"]
+offset_right = 120.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU"]
+position = Vector2(60, 10)
+shape = SubResource("RectangleShape2D_2x1l7")
