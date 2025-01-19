@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwkcpd84d7nfb"]
+[gd_scene load_steps=6 format=3 uid="uid://bwkcpd84d7nfb"]
 
 [ext_resource type="Texture2D" uid="uid://dplgoeu17mt2g" path="res://assets/vertPongField.png" id="1_3p0xw"]
 
@@ -7,6 +7,12 @@ size = Vector2(100, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5u2"]
 size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4yqt"]
+size = Vector2(28, 900)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfvpj"]
+size = Vector2(594.25, 24)
 
 [node name="Main" type="Sprite2D"]
 texture_filter = 1
@@ -35,10 +41,10 @@ offset_bottom = 16.0
 position = Vector2(50, 8)
 shape = SubResource("RectangleShape2D_0s5er")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(300, 450)
 
-[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+[node name="ColorRect" type="ColorRect" parent="Ball"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,5 +57,53 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("RectangleShape2D_wa5u2")
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-14, 450)
+shape = SubResource("RectangleShape2D_f4yqt")
+
+[node name="Righ" type="CollisionShape2D" parent="Borders"]
+position = Vector2(614, 450)
+shape = SubResource("RectangleShape2D_f4yqt")
+
+[node name="ScoreBottom" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreBottom"]
+position = Vector2(301, 914)
+shape = SubResource("RectangleShape2D_dfvpj")
+
+[node name="ScoreTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreTop"]
+position = Vector2(300, -14)
+shape = SubResource("RectangleShape2D_dfvpj")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CPUScore" type="Label" parent="HUD"]
+offset_top = 360.0
+offset_right = 40.0
+offset_bottom = 415.0
+theme_override_colors/font_color = Color(0.670588, 0.858824, 0.670588, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player Score" type="Label" parent="HUD"]
+offset_top = 485.0
+offset_right = 40.0
+offset_bottom = 540.0
+theme_override_colors/font_color = Color(0.670588, 0.858824, 0.670588, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
