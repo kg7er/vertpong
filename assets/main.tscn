@@ -1,44 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqsqkcys4nmkb"]
+[gd_scene load_steps=4 format=3 uid="uid://bwkcpd84d7nfb"]
 
-[ext_resource type="Texture2D" uid="uid://b7pyawd7sb2av" path="res://assets/vertPongField.png" id="1_tvod1"]
+[ext_resource type="Texture2D" uid="uid://dplgoeu17mt2g" path="res://assets/vertPongField.png" id="1_3p0xw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x1l7"]
-size = Vector2(120, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s5er"]
+size = Vector2(100, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7dpm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5u2"]
 size = Vector2(10, 10)
 
 [node name="Main" type="Sprite2D"]
 texture_filter = 1
-texture = ExtResource("1_tvod1")
+texture = ExtResource("1_3p0xw")
 centered = false
 
 [node name="Player" type="StaticBody2D" parent="."]
-position = Vector2(221, 930)
+position = Vector2(250, 40)
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
-offset_right = 120.0
-offset_bottom = 20.0
+offset_right = 100.0
+offset_bottom = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(60, 10)
-shape = SubResource("RectangleShape2D_2x1l7")
+position = Vector2(50, 8)
+shape = SubResource("RectangleShape2D_0s5er")
 
 [node name="CPU" type="StaticBody2D" parent="."]
-position = Vector2(221, 50)
+position = Vector2(250, 840)
 
 [node name="ColorRect" type="ColorRect" parent="CPU"]
-offset_right = 120.0
-offset_bottom = 20.0
+offset_right = 100.0
+offset_bottom = 16.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CPU"]
-position = Vector2(60, 10)
-shape = SubResource("RectangleShape2D_2x1l7")
+position = Vector2(50, 8)
+shape = SubResource("RectangleShape2D_0s5er")
 
-[node name="Ball" type="CharacterBody2D" parent="."]
-position = Vector2(281, 500)
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(300, 450)
 
-[node name="ColorRect" type="ColorRect" parent="Ball"]
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,5 +51,5 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-shape = SubResource("RectangleShape2D_w7dpm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wa5u2")
