@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwkcpd84d7nfb"]
+[gd_scene load_steps=9 format=3 uid="uid://bwkcpd84d7nfb"]
 
 [ext_resource type="Texture2D" uid="uid://dplgoeu17mt2g" path="res://assets/vertPongField.png" id="1_3p0xw"]
+[ext_resource type="Script" path="res://assets/main.gd" id="2_jg52m"]
+[ext_resource type="Script" path="res://assets/player.gd" id="3_f0k1d"]
+[ext_resource type="Script" path="res://assets/ball.gd" id="4_u4ddc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s5er"]
 size = Vector2(100, 16)
@@ -18,20 +21,10 @@ size = Vector2(594.25, 24)
 texture_filter = 1
 texture = ExtResource("1_3p0xw")
 centered = false
-
-[node name="Player" type="StaticBody2D" parent="."]
-position = Vector2(250, 40)
-
-[node name="ColorRect" type="ColorRect" parent="Player"]
-offset_right = 100.0
-offset_bottom = 16.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(50, 8)
-shape = SubResource("RectangleShape2D_0s5er")
+script = ExtResource("2_jg52m")
 
 [node name="CPU" type="StaticBody2D" parent="."]
-position = Vector2(250, 840)
+position = Vector2(250, 40)
 
 [node name="ColorRect" type="ColorRect" parent="CPU"]
 offset_right = 100.0
@@ -41,8 +34,21 @@ offset_bottom = 16.0
 position = Vector2(50, 8)
 shape = SubResource("RectangleShape2D_0s5er")
 
+[node name="Player" type="StaticBody2D" parent="."]
+position = Vector2(250, 840)
+script = ExtResource("3_f0k1d")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_right = 100.0
+offset_bottom = 16.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(50, 8)
+shape = SubResource("RectangleShape2D_0s5er")
+
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(300, 450)
+script = ExtResource("4_u4ddc")
 
 [node name="ColorRect" type="ColorRect" parent="Ball"]
 anchors_preset = 8
@@ -107,3 +113,5 @@ vertical_alignment = 1
 [node name="BallTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
