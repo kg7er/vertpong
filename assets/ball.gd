@@ -21,3 +21,9 @@ func new_ball():
 	
 func _physics_process(delta: float) -> void:
 	move_and_collide(dir * speed * delta)
+	
+	
+	
+
+func get_speed() -> int:
+	return 500
